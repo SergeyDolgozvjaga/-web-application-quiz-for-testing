@@ -1,0 +1,47 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create_answers" author="sergey.dolgozvjaga">
+        <createTable tableName="answers">
+            <column name="answerID" type="int unsigned" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="questionID" type="int unsigned">
+                <constraints nullable="false"/>
+            </column>
+            <column name="answer_the_question" type="mediumtext">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_answer_correct" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- foreign keys -->
+    <changeSet id="add-fk-between-tests-and-questions" author="sergey.dolgozvjaga">
+        <addForeignKeyConstraint constraintName="fk_tests_quest"
+                                 baseTableName="questions" baseColumnNames="testID" referencedTableName="tests"
+                                 referencedColumnNames="testID" onDelete="CASCADE"  onUpdate="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="add-fk-between-questions-and-answers" author="sergey.dolgozvjaga">
+        <addForeignKeyConstraint constraintName="fk_quest_answ"
+                                 baseTableName="answers" baseColumnNames="questionID" referencedTableName="questions"
+                                 referencedColumnNames="questionID" onDelete="CASCADE"  onUpdate="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="add-fk-between_users_and_result" author="sergey.dolgozvjaga">
+        <addForeignKeyConstraint constraintName="fk_users_result"
+                                 baseTableName="results" baseColumnNames="userID" referencedTableName="users"
+                                 referencedColumnNames="userID" onDelete="CASCADE" onUpdate="CASCADE"/>
+    </changeSet>
+
+
+    <changeSet id="tag-1.2" author="sergey.dolgozvjaga">
+        <tagDatabase tag="1.2"/>
+    </changeSet>
+</databaseChangeLog>

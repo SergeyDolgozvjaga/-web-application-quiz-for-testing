@@ -1,0 +1,38 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create_users" author="sergey.dolgozvjaga">
+        <createTable tableName="users">
+            <column name="userID" type="int unsigned" autoIncrement="true">
+                <constraints primaryKey="true" unique="true"/>
+            </column>
+            <column name="login" type="varchar(25)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="varchar(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_name" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="age" type="tinyint unsigned">
+            </column>
+            <column name="email" type="varchar(30)">
+                <constraints unique="true"/>
+            </column>
+            <column name="is_banned" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="varchar(20)"  defaultValue="user">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="tag-1.0" author="sergey.dolgozvjaga">
+        <tagDatabase tag="1.0"/>
+    </changeSet>
+</databaseChangeLog>

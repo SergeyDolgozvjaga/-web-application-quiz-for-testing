@@ -1,0 +1,29 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+
+http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create_results" author="sergey.dolgozvjaga">
+        <createTable tableName="results">
+            <column name="resultID" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="userID" type="int unsigned">
+                <constraints nullable="false"/>
+            </column>
+            <column name="testID" type="int unsigned">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_test_done" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="result_points" type="tinyint unsigned">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="tag-1.1" author="sergey.dolgozvjaga">
+        <tagDatabase tag="1.1"/>
+    </changeSet>
+</databaseChangeLog>
